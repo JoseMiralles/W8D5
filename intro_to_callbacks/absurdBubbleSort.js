@@ -27,4 +27,17 @@ function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop){
     }
 }
 
-innerBubbleSortLoop([1,4,2,3], 0, false, ()=>console.log("Finished iterating."));
+function absurdBubbleSort(arr, sortComletitionCallback){
+    function outerBubbleSortLoop(madeSwaps){
+        if (madeSwaps){
+            innerBubbleSortLoop(arr, 0, false, outerBubbleSortLoop);
+        } else {
+            sortComletitionCallback(arr);
+        }
+    }
+    outerBubbleSortLoop(true);
+}
+
+absurdBubbleSort([3, 2, 1], function (arr) {
+    console.log("Sorted array: " + JSON.stringify(arr));
+});
