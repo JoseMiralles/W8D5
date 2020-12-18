@@ -1,4 +1,4 @@
-secondsPerInterval = 1;
+// secondsPerInterval = 1;
 // time = new Date();
 
 // window.setInterval(function(){
