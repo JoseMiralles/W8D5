@@ -8,6 +8,7 @@ class addNumber{
 
     addNumbers(sum, numsLeft, completionCallback){
         if (numsLeft > 0){
+            console.log("TESTSETSETSET");
             this.reader.question("Enter a number: ", (answer) => {
                 const num = parseInt(answer);
                 console.log(sum += num);
