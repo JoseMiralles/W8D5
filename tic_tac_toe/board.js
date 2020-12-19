@@ -1,8 +1,8 @@
 class Board{
 
-    constructor(){
-        this.grid = Array.from({length: 3}, function(){
-            return Array.from({length: 3}, function(){
+    constructor(gridSize){
+        this.grid = Array.from({length: gridSize}, function(){
+            return Array.from({length: gridSize}, function(){
                 return "_";
             }); 
         });
@@ -56,8 +56,9 @@ class Board{
     }
 
     print (){
-        this.grid.forEach((row) => {
-            let str = "";
+        console.log("  0 1 2");
+        this.grid.forEach((row, i) => {
+            let str = `${i} `;
             row.forEach((square) => {
                str += square + " "; 
             });
@@ -67,9 +68,4 @@ class Board{
 
 }
 
-board = new Board();
-board.placeMark([0,2], "X");
-board.placeMark([1,1], "X");
-board.placeMark([2,0], "X");
-console.log(board.isWon());
-board.print();
+module.exports = Board;
