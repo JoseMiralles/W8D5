@@ -19,18 +19,36 @@ class Board{
         let won = false;
         let winner = "";
 
-        // Transpose array
-        const transposed = this.#transpose(this.grid);
+        // Transpose grid
+        const transposedGrid = this.#transpose(this.grid);
+        const diagonals = this.#getDiagonals();
 
-        this.grid.concat(transposed).forEach((row) => {
-            if (row.every((square) => square === row[0])){
+        // Check the original, the transposed grid, and the diagonals for a winning player.
+        this.grid.concat(transposedGrid, diagonals).forEach((row) => {
+            if (row.every((square) => (square === row[0] && square !== "_") )){
                 won = true;
                 winner = row[0];
                 return;
             }
         });
+
         this.winner = winner;
         return won;
+
+    }
+
+    #getDiagonals(){
+        let x = 0;
+        let y = this.grid.length - 1;
+        const diagonals = [[],[]];
+
+        while (x <= this.grid.length - 1){
+            diagonals[0].push( this.grid[x][x] );
+            diagonals[1].push( this.grid[x][y] );
+            x++, y--;
+        }
+
+        return diagonals;
     }
 
     #transpose(matrix) {
@@ -50,8 +68,8 @@ class Board{
 }
 
 board = new Board();
-board.placeMark([1,0], "X");
+board.placeMark([0,2], "X");
+board.placeMark([1,1], "X");
 board.placeMark([2,0], "X");
-board.placeMark([0,0], "X");
 console.log(board.isWon());
 board.print();
